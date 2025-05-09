@@ -14,12 +14,12 @@ public class GenderService : IGenderInterface
         _context = context;
     }
 
-    public async Task<ResponseRegisteredGenderJson> AddGender(RequestRegisterGenderJson author)
+    public async Task<ResponseRegisteredGenderJson> AddGender(RequestRegisterGenderJson gender)
     {
         ResponseRegisteredGenderJson response = new();
         var newGender = new GenderModel
         {
-            Name = author.Name
+            Name = gender.Name
         };
 
         _context.Gender.Add(newGender);
@@ -51,13 +51,13 @@ public class GenderService : IGenderInterface
         return await _context.Gender.FirstOrDefaultAsync(x => x.Id == id);
     }
 
-    public async Task<GenderModel?> UpdateGender(GenderModel author)
+    public async Task<GenderModel?> UpdateGender(GenderModel gender)
     {
-        var genderToUpdate = await _context.Gender.FirstOrDefaultAsync(x => x.Id == author.Id);
+        var genderToUpdate = await _context.Gender.FirstOrDefaultAsync(x => x.Id == gender.Id);
         if (genderToUpdate == null)
             return null;
 
-        genderToUpdate.Name = author.Name;
+        genderToUpdate.Name = gender.Name;
 
         _context.Gender.Update(genderToUpdate);
         await _context.SaveChangesAsync();

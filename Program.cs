@@ -1,5 +1,6 @@
 using BookstoreManagementApi.Data;
 using BookstoreManagementApi.Services.Author;
+using BookstoreManagementApi.Services.Book;
 using BookstoreManagementApi.Services.Gender;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IAuthorInterface, AuthorService>();
 builder.Services.AddScoped<IGenderInterface, GenderService>();
+builder.Services.AddScoped<IBookInterface, BookService>();
 
 var app = builder.Build();
 

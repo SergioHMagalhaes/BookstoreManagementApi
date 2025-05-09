@@ -2,8 +2,6 @@
 using BookstoreManagementApi.Communication.Responses;
 using BookstoreManagementApi.Models;
 using BookstoreManagementApi.Services.Gender;
-using BookstoreManagementApi.Services.Gender;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookstoreManagementApi.Controllers;
@@ -43,12 +41,12 @@ public class GenderController : ControllerBase
     [HttpPost]
     [ProducesResponseType(typeof(ResponseRegisteredGenderJson), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> AddGender([FromBody] RequestRegisterGenderJson author)
+    public async Task<IActionResult> AddGender([FromBody] RequestRegisterGenderJson gender)
     {
-        if (author == null)
+        if (gender == null)
             return BadRequest("Dados inválidos");
 
-        var response = await _genderInterface.AddGender(author);
+        var response = await _genderInterface.AddGender(gender);
         return Created(string.Empty, response);
     }
 
@@ -56,11 +54,11 @@ public class GenderController : ControllerBase
     [ProducesResponseType(typeof(GenderModel), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> UpdateGender([FromBody] GenderModel author)
+    public async Task<IActionResult> UpdateGender([FromBody] GenderModel gender)
     {
-        if (author == null)
+        if (gender == null)
             return BadRequest("Dados inválidos");
-        var response = await _genderInterface.UpdateGender(author);
+        var response = await _genderInterface.UpdateGender(gender);
         if (response == null)
             return NotFound("Genero não encontrado");
         return Ok(response);

@@ -6,6 +6,7 @@ public class BookModel
     public string Title { get; set; }
     public string Description { get; set; }
     public AuthorModel Author { get; set; }
+    public GenderModel Gender { get; set; }
     public int Price { get; set; }
     public int Amount { get; set; }
 }
