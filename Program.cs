@@ -1,5 +1,6 @@
 using BookstoreManagementApi.Data;
 using BookstoreManagementApi.Services.Author;
+using BookstoreManagementApi.Services.Gender;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +20,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-builder.Services.AddScoped<IAuthorInterface, AuthorServices>();
+builder.Services.AddScoped<IAuthorInterface, AuthorService>();
+builder.Services.AddScoped<IGenderInterface, GenderService>();
 
 var app = builder.Build();
 

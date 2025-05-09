@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookstoreManagementApi.Services.Author;
 
-public class AuthorServices : IAuthorInterface
+public class AuthorService : IAuthorInterface
 {
     private readonly AppDbContext _context;
-    public AuthorServices(AppDbContext context)
+    public AuthorService(AppDbContext context)
     {
         _context = context;
     }
